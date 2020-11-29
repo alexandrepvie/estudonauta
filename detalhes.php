@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilos/estilo.css">
+    <link rel="stylesheet" href="estilos/style.css">
     <title>Título da página</title>
 </head>
 <body>
@@ -25,8 +25,11 @@
                 } else {
                     if($busca->num_rows == 1) {
                         $reg = $busca->fetch_object();
-                        echo "<tr><td rowspan='3'>foto</td><td>$reg->nome</td></tr>";
-                        echo "<tr> <td>Descrição</td></tr>";
+                        $t = thumb($reg->capa);
+                        echo "<tr><td rowspan='3'><img src='$t' class='full'/></td>";
+                        echo"<td><h2>$reg->nome</h2>";
+                        echo"Nota: $reg->nota/10";
+                        echo "<tr> <td>$reg->descricao</td></tr>";
                         echo "<tr><td>Adm</td></tr>";
                     } else {
                         echo"<tr><td> Nenhum registro encontrado";
@@ -34,6 +37,7 @@
                 }
             ?>
         </table>
+        <a href="index.php"><img src="icones/icoback.png"></a>
     </div>
 </body>
 </html>
