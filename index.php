@@ -29,9 +29,9 @@
                         while($reg=$busca->fetch_object()){
                             $t = thumb($reg->capa);
                             //passando a referencia da imagem
-                            echo "<tr><td><img src='$t' class='mini' />";
+                            echo "<tr><td><img src='$t' class='mini'/>";
                             //nome
-                            echo"<td>$reg->nome";
+                            echo"<td><a href='detalhes.php?cod=$reg->cod'>$reg->nome</a>";
                             //parte  adiministrativa
                             echo "<td>Adm";
                             
