@@ -3,7 +3,7 @@ body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     
 }
-header {
+p.pequeno {
     text-align: right;
     font-size: 10px;
 }
