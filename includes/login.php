@@ -1,7 +1,7 @@
 <?php
 session_start();
 //Testando para ver se tem usuario logado, saida usuario ou vazio
-if (!isset($_SESSION['user'])){
+ if (!isset($_SESSION['user'])){
     $_SESSION['user'] ="";
     $_SESSION['nome'] ="";
     $_SESSION['tipo'] ="";
