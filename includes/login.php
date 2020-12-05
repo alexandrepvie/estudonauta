@@ -13,15 +13,16 @@ function cripto($senha){
         $letra = ord($senha[$pos]) +1;
         $c .= chr($letra); 
     }
+    return $c;
 }
 
 function gerarHash($senha){
     $txt = cripto($senha);
-    $hash = password_hash($senha, PASSWORD_DEFAULT);
+    $hash = password_hash($txt, PASSWORD_DEFAULT);
     return $hash;
 }
 
 function testarHash($senha, $hash){
-    $ok = password_verify(cripto($senha),$hash);
+    $ok = password_verify($senha,$hash);
     return $ok;
 }
