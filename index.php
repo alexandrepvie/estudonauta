@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php
+        require_once"includes/banco.php";
+        require_once"includes/login.php";
+        require_once"includes/funcoes.php";
+        $ordem = $_GET['o'] ?? "n";
+        $chave = $_GET['c'] ?? "";
+    ?>
 <html lang="PT-br">
 <head>
     <meta charset="UTF-8">
@@ -6,19 +13,9 @@
     <!--<link rel="stylesheet" href="estilos/estilo.css">-->
     <link rel="stylesheet" href="estilos/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <?php
-        
-    ?>
     <title>Listagem de Jogos</title>
 </head>
 <body>
-    <?php
-        require_once"includes/banco.php";
-        require_once"includes/login.php";
-        require_once"includes/funcoes.php";
-        $ordem = $_GET['o'] ?? "n";
-        $chave = $_GET['c'] ?? "";
-    ?>
     <div id="corpo">
         <?php include_once"topo.php";?>
         <h1>Escolha seu jogo</h1>
@@ -54,29 +51,34 @@
                 }
                 $busca = $banco->query($q);
                 if (!$busca) {
-                    echo"<tr><td>Infelizmente a busca deu errado</td></tr>";
+                    echo"Falhou $banco->error";
                 } else {
-                    if ($busca->num_rows == 0){
-                        echo "<tr><td>Nenhum registro encontrado</td></tr>";
-                    } else {
+                    if ($busca->num_rows > 0){
+                        
                         while($reg=$busca->fetch_object()){
+                            //carregando thumb
                             $t = thumb($reg->capa);
-                            //passando a referencia da imagem
                             echo "<tr><td><img src='$t' class='mini'/>";
-                            //nome
+                            //mostrar jogo
                             echo"<td><a href='detalhes.php?cod=$reg->cod'>$reg->nome</a>";
-                            //genero
-                            echo" [$reg->genero] ";
-                            //Produtora
-                            echo" <br>[$reg->produtora] ";
-                            //parte  adiministrativa
-                            echo "<td>Adm";
+                            echo"<br>[$reg->genero][$reg->produtora] ";
+                            //opções de usuários
+                            if(is_admin()){
+                                echo"<td> <i class='material-icons'>add_circle</i>";
+                                echo "<i class = 'material-icons'>edit</i> ";
+                                echo "<i class = 'material-icons'>delete</i>";
+                            } elseif (is_editor()){
+                                echo "<td><i class='material-icons'>edit</i>";
+                            }
+                        }
+                            
+                    } else {
+                        echo "<tr><td>Nenhum registro encontrado";
                             
                             #echo <img src='fotos/reg->capa'>;
                             
                         }
                     }
-                }
             ?>
             
             <!--<tr><td>Foto</td><td>Nome</td><td>Adm</td></tr>
