@@ -29,7 +29,7 @@
                     if($busca->num_rows == 1) {
                         $reg = $busca->fetch_object();
                         $t = thumb($reg->capa);
-                        echo "<tr><td rowspan='3'><img src='$t' class='full'/></td>";
+                        echo "<tr><td rowspan='3'><img src='$t' class='full'/>";
                         echo"<td><h2>$reg->nome</h2>";
                         echo"Nota: $reg->nota/10";
                         if(is_admin()){
@@ -39,8 +39,8 @@
                         } elseif (is_editor()){
                             echo " <i class='material-icons'>edit</i>";
                         }
-                        echo "<tr> <td>$reg->descricao</td></tr>";
-                        echo "<tr><td>Adm</td></tr>";
+                        echo "<tr><td>$reg->descricao";
+                        echo "<tr><td>Adm";
                     } else {
                         echo"<tr><td> Nenhum jogo encontrado";
                     } 
