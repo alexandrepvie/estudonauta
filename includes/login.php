@@ -23,7 +23,7 @@ function gerarHash($senha){
 }
 
 function testarHash($senha, $hash){
-    $ok = password_verify($senha,$hash);
+    $ok = password_verify(cripto($senha),$hash);
     return $ok;
 }
 
