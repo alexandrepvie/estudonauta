@@ -21,6 +21,7 @@
                 if(!isset($_POST['usuario'])){
                     require "user-new-form.php";
                 } else {
+                    $nome = "";
                     $usuario = $_POST['usuario'] ?? null;
                     $nome = $_POST['nome'] ?? null;
                     $senha1 = $_POST['senha1'] ?? null;
